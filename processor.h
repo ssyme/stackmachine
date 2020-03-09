@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include "stack.h"
 
+#define DEBUG 1
+
 typedef struct
 {
 	word status, immediate, *memory; // status: r r r ofl zro pos jmp halt
@@ -11,6 +13,7 @@ processor_t* init_processor(void);
 void run(processor_t*, word*, int);
 void incpc(processor_t*);
 
+/* primatives */
 void nop(processor_t*);
 void push(processor_t*);
 void pop(processor_t*);
@@ -18,6 +21,9 @@ void add(processor_t*);
 void out(processor_t*);
 void jump(processor_t*);
 void halt(processor_t*);
+
+/* debugging */
+void examine_stack(stack_t*);
 
 void (*opcodes[])(processor_t*) =
 {
@@ -54,6 +60,13 @@ void run(processor_t* processor, word* code, int codelen)
 			peak_stack(processor->cst)+1];
 		opcodes[nextinst](processor);
 		incpc(processor);
+
+		if (DEBUG)
+		{
+			puts("examining stacks:");
+			examine_stack(processor->dst);
+			examine_stack(processor->cst);
+		}
 	}
 }
 
@@ -61,9 +74,10 @@ void incpc(processor_t* processor)
 {
 	push_to_stack(processor->cst, 1);
 	push_to_stack(processor->cst,
-		pop_stack(processor->cst) + pop_stack(processor->cst));
+			pop_stack(processor->cst) + pop_stack(processor->cst));
 }
 
+/* primatives */
 void nop(processor_t* processor)
 {
 }
@@ -87,6 +101,10 @@ void add(processor_t* processor)
 
 void out(processor_t* processor)
 {
+	if (DEBUG)
+	{
+		printf("says> ");
+	}
 	printf("%d\n", peak_stack(processor->dst));
 }
 
@@ -99,4 +117,14 @@ void jump(processor_t* processor)
 void halt(processor_t* processor)
 {
 	processor->status |= 1;
+}
+
+/* debugging */
+void examine_stack(stack_t* stack)
+{
+	for (int i = 0; i <= stack->sp; i++)
+	{
+		printf("%d]\t%d\n", i, stack->data[i]);
+	}
+	puts("");
 }

@@ -23,6 +23,8 @@ stack_t* init_stack(int size)
 
 void push_to_stack(stack_t *stack, word operand)
 {
+	if (stack->sp > 14)
+		stack->sp = 0;
 	stack->data[++stack->sp] = operand;
 }
 
