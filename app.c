@@ -1,27 +1,25 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include "processor.h"
+#include "spec.h"
+#include "vm.h"
 
-int main()
+void load_into_memory(processor_t*, word_t*, int);
+
+int main(void)
 {
-	processor_t *p = init_processor();
+	processor_t* processor = create_processor();
 
-  // 0: nop,  1: push,  2: pop,   3: add
-  // 4: out,  5: jump,  7: halt
+	word_t code[] = {push, 5, push, 13, push, 10, add, add, out, halt};
+	load_into_memory(processor, code, 10);
 
-	word code[] =
-  {
-    0x01,
-    0x01,
-    0x01,
-    0x01,
-    0x03,
-    0x04,
-    0x05,
-    0x00,
-    0x06
-  };
-	run(p, code, 10);
+	while (processor->active)
+		cycle(processor);
 
+	free_processor(processor);
 	return 0;
+}
+
+void load_into_memory(processor_t* processor, word_t* code, int codelen)
+{
+	for (int i = 0; i < codelen; i++)
+		processor->memory[i] = code[i];
 }

@@ -1,41 +1,47 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "spec.h"
 
-typedef char word;
+#define STACKDEPTH 15
 
-typedef struct
+typedef struct stack
 {
-	word sp, *data;
+	word_t* data;
+	word_t sp;
 } stack_t;
 
-stack_t* init_stack(int);
-void push_to_stack(stack_t*, word);
-word peak_stack(stack_t*);
-word pop_stack(stack_t*);
+stack_t* create_stack(void);
+void free_stack(stack_t*);
 
-stack_t* init_stack(int size)
+void push_to(stack_t*, word_t op);
+word_t pop_from(stack_t*);
+word_t peak(stack_t*);
+
+stack_t* create_stack(void)
 {
-	stack_t *stack = malloc(sizeof *stack);
-	stack->sp = 0;
-	stack->data = malloc(sizeof(word)*size);
+	stack_t* stack = (stack_t *)malloc(sizeof(stack));
+	stack->data = (word_t *)malloc(STACKDEPTH);
+	stack->sp = -1;
 	return stack;
 }
 
-void push_to_stack(stack_t *stack, word operand)
+void free_stack(stack_t* stack)
 {
-	if (stack->sp > 14)
-		stack->sp = 0;
-	stack->data[++stack->sp] = operand;
+	free(stack->data);
+	free(stack);
 }
 
-word peak_stack(stack_t *stack)
+void push_to(stack_t* stack, word_t op)
+{
+	stack->data[++stack->sp] = op;
+}
+
+word_t pop_from(stack_t* stack)
+{
+	return stack->sp < 0 ? 0 : stack->data[stack->sp--];
+}
+
+word_t peak(stack_t* stack)
 {
 	return stack->data[stack->sp];
-}
-
-word pop_stack(stack_t *stack)
-{
-	word top = peak_stack(stack);
-	stack->sp--;
-	return top;
 }
