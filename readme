@@ -7,4 +7,4 @@ Instruction set
 0 - nop
 1 - push (immediate)
 2 - pop
-3 - add (p->p+p)
+3 - add (on stack)
