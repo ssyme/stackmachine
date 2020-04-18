@@ -17,7 +17,7 @@ void free_processor(processor_t*);
 word_t inc_stack(stack_t* stack);
 void cycle(processor_t*);
 
-word_t inc_stack(stack_t* stack)
+word_t inc_stack(stack_t* stack)  /* used for incr. call stack */
 {
 	push_to(stack, pop_from(stack)+1);
 	return peak(stack);
