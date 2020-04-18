@@ -8,7 +8,7 @@ int main(void)
 {
 	processor_t* processor = create_processor();
 
-	word_t code[] = {push, 50, push, 34, push, 66, add, add, out, halt};
+	word_t code[] = {push, 50, push, 34, push, 15, add, add, out, halt};
 	load_into_memory(processor, code, 10);
 
 	while (processor->active)
