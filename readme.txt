@@ -27,4 +27,3 @@ multiply       -          multiply top two stack elements
 divide         -          divide top two stack elements (s0/s1)
 print          -          out from stack until reaching 0
 printDigit     -          print top element on stack as a number
-
