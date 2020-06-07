@@ -4,7 +4,8 @@ Simple Stack Machine in C
 Instruction Set
 ---------------
 
-The instruction set is intentionally minimal and consists majoritively of stack operations.
+The instruction set is intentionally minimal and consists majoritively of stack
+operations.
 
 hlt     -          halt
 psh     -          push (immediate)
@@ -20,7 +21,8 @@ jpz     -          jump to address arg1 if not arg2 (from stack)
 Standard Library
 ----------------
 
-The instruction set is extended with a minimal standard library which provides useful helper functions to carry out tedious arithmetic and IO operations.
+The instruction set is extended with a minimal standard library which provides
+useful helper functions to carry out tedious arithmetic and IO operations.
 
 subtract       -          subtract top two stack elements
 multiply       -          multiply top two stack elements
