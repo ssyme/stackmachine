@@ -1,0 +1,28 @@
+psh, 15,  // how many iterations
+psh, 1,
+psh, 1,
+
+out,      // print first two elements
+out,
+
+dpl,      // calculate next element
+pop,
+add,
+
+swp,      // loop
+psh, -1,
+add,
+dpl,
+psh, 28,  // halt if finished iterating
+jpz,
+swp,
+
+out,      // print next element
+
+pll,      // return to start
+swp,
+psh, 0,
+psh, 8,
+jpz,
+
+hlt
