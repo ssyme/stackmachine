@@ -1,5 +1,7 @@
-Simple Stack Machine in C
-=========================
+
+                         Simple Stack Machine in C
+                         =========================
+
 
 Instruction Set
 ---------------
