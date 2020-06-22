@@ -29,7 +29,7 @@ BIOS
 ----
 
 While a minimal instruction set has its advantages it can make certain IO
-operations tedious. The BIOS exists to make commin tasks simplier by
+operations tedious. The BIOS exists to make common tasks simplier by
 providing a small set of useful procedures.
 
 printString	-	  print from stack until reaching terminator char
