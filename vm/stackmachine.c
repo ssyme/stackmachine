@@ -49,9 +49,7 @@ int main()
 	{
 	    word_t top = *DATAPTR;
 	    for (int i = DATAHEIGHT; i > 0; i--)
-	    {
 		DATASTACK[i] = DATASTACK[i-1];
-	    }
 	    DATASTACK[0] = top;
 	    break;
 	}
