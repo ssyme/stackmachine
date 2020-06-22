@@ -6,28 +6,42 @@
 Instruction Set
 ---------------
 
-The instruction set is intentionally minimal and consists majoritively of stack
-operations.
+The instruction set is intentionally minimal, consisting majoritively of stack
+and control flow operations. None of these instructions pop their arguments.
 
 hlt     -          halt
 psh     -          push (immediate)
+pop     -          pop element from stack
 dpl     -          duplicate top stack element
 swp     -          swap top two stack elements
-pop     -          pop element from stack (send to purgatory)
-pll     -          pull from purgatory (popped)
+cyc	-	   cycle stack (bottom element moved to top)
 add     -          add top two stack elements
-out     -          print top stack element (doesn't pop)
-jpz     -          jump to address arg1 if not arg2 (from stack)
+cmp	-	   compare top stack elements
+out     -          print top stack element
+inp	-	   push user input to stack
+cbr     -          branch to address arg1 if not arg2 (from stack)
+ubr	-	   unconditional branch
+crt	-	   conditional return
+urt	-	   unconditional return
+
+
+BIOS
+----
+
+While a minimal instruction set has its advantages it can make certain IO
+operations tedious. The BIOS exists to make these simplier by providing
+a small set of useful procedures.
+
+printString	-	  print from stack until reaching terminator char
+printNum	-	  print the top element on the stack as a number
 
 
 Standard Library
 ----------------
 
-The instruction set is extended with a minimal standard library which provides
-useful helper functions to carry out tedious arithmetic and IO operations.
+The BIOS is complemented with a small standard library to provide a few
+subroutines responsible for arithmetic and logic operations.
 
 subtract       -          subtract top two stack elements
 multiply       -          multiply top two stack elements
 divide         -          divide top two stack elements (s0/s1)
-print          -          out from stack until reaching 0
-printDigit     -          print top element on stack as a number
