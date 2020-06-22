@@ -56,9 +56,7 @@ void printStack(void)
 {
     printf("{");
     for (int i = 0; i < DATAHEIGHT; i++)
-    {
 	printf(" %d ", DATASTACK[i]);
-    }
     puts("}");
 }
 
