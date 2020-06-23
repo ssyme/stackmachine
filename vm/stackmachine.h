@@ -4,7 +4,11 @@
 #define STACK_DEPTH 32
 #define MEMORY_SIZE 256
 
-#define CHARSET "0123456789ANCDEFGHIJKLMNOPQRSTUVWYZ.<>!?'-+/* \n\0"
+#define CHARSET "0123456789" \
+                "ANCDEFGHIJ" \
+		"KLMNOPQRST" \
+		"UVWYZ.<>!?" \
+		"'-+/* \n\0"
 
 #define PSH_CST(x) *(++CSTPTR) = x
 #define POP_CST    *(CSTPTR--)
@@ -16,6 +20,9 @@
 #define PSH_DATA(x) *(++DATAPTR) = x
 #define POP_DATA    *(DATAPTR--)
 #define DATAHEIGHT  DATAPTR-DATASTACK+1  /* Height of stack */
+
+#define DATATOP *DATAPTR
+#define DATABEL *(DATAPTR-1)
 
 typedef int8_t word_t;
 
@@ -48,8 +55,11 @@ enum OP_CODES
 
 void loadIntoMemory(word_t program[], word_t proglen, word_t origin)
 {
+    MEMORY[0] = pop;
+    if (origin > 0)
+	origin--;
     for (int i = origin; i < proglen; i++)
-	MEMORY[i] = program[i];
+	MEMORY[i+1] = program[i];
 }
 
 void printStack(void)
