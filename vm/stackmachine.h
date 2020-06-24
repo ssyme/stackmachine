@@ -5,7 +5,7 @@
 #define MEMORY_SIZE 256
 
 #define CHARSET "0123456789" \
-                "ANCDEFGHIJ" \
+                "ABCDEFGHIJ" \
 		"KLMNOPQRST" \
 		"UVWYZ.<>!?" \
 		"'-+/* \n\0"

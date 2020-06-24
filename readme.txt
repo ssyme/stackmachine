@@ -16,6 +16,7 @@ dpl     	-    	     	duplicate top stack element
 swp     	-	       	swap top two stack elements
 cyc		-               cycle stack (bottom element moved to top)
 add     	-		add top two stack elements
+cmp		-		compare top two stack elements
 out     	-          	print top stack element
 inp		-	   	push user input to stack
 cbr     	-               branch to address arg1 if not arg2 (from stack)

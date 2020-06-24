@@ -4,27 +4,35 @@
 int main()
 {
     word_t code[] = {
-	psh, 46,              /* Hello world program */
+	psh, 47,  /* Hello world */
+	psh, 46,
 	psh, 38,
+	psh, 13,
+	psh, 21,
+	psh, 27,
+	psh, 24,
+	psh, 32,
+	psh, 45,
 	psh, 24,
 	psh, 21,
 	psh, 21,
 	psh, 14,
 	psh, 17,
-	psh, 7,
-	swp,
+
+	dpl,
+	psh, 47,
+	cmp,
+	psh, 41,
+	cbr,
+	pop,
 	out,
 	pop,
-	psh, -1,
-	add,
 	psh, 28,
-	cbr,
-	psh, 16,
 	ubr,
 	hlt
     };
 
-    loadIntoMemory(code, 30, 0);
+    loadIntoMemory(code, 50, 0);
     
     do {
 	switch (CINSTR)
@@ -66,6 +74,13 @@ int main()
 	    break;
 	}
 
+	case cmp:
+	{
+	    word_t top = POP_DATA, below = POP_DATA;
+	    PSH_DATA(top == below);
+	    break;
+	}
+
 	case out:
 	    printf("%c", CHARSET[DATATOP]);
 	    break;
@@ -80,7 +95,7 @@ int main()
 	case cbr:
 	{
 	    word_t brnadd = POP_DATA;
-	    if (!DATATOP)
+	    if (DATATOP)
 		PSH_CST(brnadd);
 	    break;
 	}
@@ -90,7 +105,7 @@ int main()
 	    break;
 
 	case crt:
-	    if (!DATATOP)
+	    if (DATATOP)
 		POP_CST;
 	    break;
 
@@ -101,6 +116,7 @@ int main()
 	default:
 	    puts("Encountered an invalid opcode during runtime.");
 	}
+
     } while (MEMORY[INC_CST] != hlt);
     
     return 0;
