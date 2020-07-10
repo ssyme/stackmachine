@@ -1,6 +1,7 @@
 :USING SMASM:
 
 ..start:
+	;; hello world program
 	psh '\0'
 	psh '\n'
 	psh '!'
