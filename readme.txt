@@ -23,6 +23,8 @@ cbr     	-               branch to address arg1 if not arg2 (from stack)
 ubr		-		unconditional branch
 crt		-	   	conditional return
 urt		-	   	unconditional return
+wrt		-		write to memory (s0 -> m[s1])
+lde		-		load from memory (m[s0])
 
 
 BIOS
@@ -33,7 +35,7 @@ operations tedious. The BIOS exists to make common tasks simpler by providing a
 small set of useful procedures.
 
 printString	-		print from stack until reaching terminator char
-printNum	-	  	print the top element on the stack as a number
+printNum	-	  	print the top  element on the stack as a number
 
 
 Standard Library

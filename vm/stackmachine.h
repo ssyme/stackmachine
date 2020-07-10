@@ -52,7 +52,9 @@ enum OP_CODES
     cbr,
     ubr,
     crt,
-    urt
+    urt,
+    wrt,
+    lde
 };
 
 void loadIntoMemory(word_t program[], word_t proglen, word_t origin)
