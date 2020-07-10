@@ -1,38 +1,18 @@
 #include <stdio.h>
 #include "stackmachine.h"
 
-int main()
+int main(int argc, char* argv[])
 {
-    word_t code[] = {
-	psh, 47,  /* Hello world */
-	psh, 46,
-	psh, 38,
-	psh, 13,
-	psh, 21,
-	psh, 27,
-	psh, 24,
-	psh, 32,
-	psh, 45,
-	psh, 24,
-	psh, 21,
-	psh, 21,
-	psh, 14,
-	psh, 17,
-
-	dpl,
-	psh, 47,
-	cmp,
-	psh, 41,
-	cbr,
-	pop,
-	out,
-	pop,
-	psh, 28,
-	ubr,
-	hlt
-    };
-
-    loadIntoMemory(code, 50, 0);
+    if (argc != 2)
+    {
+	puts("Please call with filename as arg!");
+	return 1;
+    }
+    
+    FILE* fp = fopen(argv[1], "r");
+    
+    loadFromFile(fp);
+    loadIntoMemory(CODE, 100, 0);
     
     do {
 	switch (CINSTR)
