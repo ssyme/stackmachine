@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 
     program[fsize] = 0;
 
-    printf("%s\n", program);
+    fscanf(
 
     return 0;
 }
