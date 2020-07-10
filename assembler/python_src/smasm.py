@@ -1,9 +1,9 @@
 from sys import argv, exit
 
 INSTRUCTION_SET = [
-    "nop", "hlt", "psh", "pop", "dpl",
-    "swp", "cyc", "add", "cmp", "out",
-    "inp", "cbr", "ubr", "crt", "urt"
+    "nop", "hlt", "psh", "pop", "dpl", "swp",
+    "cyc", "add", "cmp", "out", "inp", "cbr",
+    "ubr", "crt", "urt", "wrt", "lde"
 ]
 
 CHARSET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ.<>!?'-+/* "
