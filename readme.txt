@@ -6,8 +6,8 @@
 Instruction Set
 ---------------
 
-The instruction set is intentionally minimal,  consisting majoritively of stack
-and control  flow operations.  None of these instructions pop their  arguments.
+Intentionally minimal,  consisting of mostly stack and control flow operations.
+Missing functionality may be provided by the below libraries.
 
 hlt     	- 	       	halt
 psh     	-		push (immediate)
@@ -23,16 +23,14 @@ cbr     	-               branch to address arg1 if not arg2 (from stack)
 ubr		-		unconditional branch
 crt		-	   	conditional return
 urt		-	   	unconditional return
-wrt		-		write to memory (s0 -> m[s1])
+wrt		-		write to memory (s1 -> m[s0])
 lde		-		load from memory (m[s0])
 
 
 BIOS
 ----
 
-While  a minimal  instruction  set has  its advantages  it can make certain  IO
-operations tedious. The BIOS exists to make common tasks simpler by providing a
-small set of useful procedures.
+A few useful IO procedures.
 
 printString	-		print from stack until reaching terminator char
 printNum	-	  	print the top  element on the stack as a number
@@ -41,8 +39,8 @@ printNum	-	  	print the top  element on the stack as a number
 Standard Library
 ----------------
 
-The BIOS is complemented with a small standard library to provide a few subrou-
-tines responsible for arithmetic and logic operations.
+A small standard library complements the BIOS to provide a few subroutines re-
+sponsible for arithmetic and logic operations.
 
 subtract        -               subtract top two stack elements
 multiply        -	      	multiply top two stack elements
