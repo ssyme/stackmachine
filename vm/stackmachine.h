@@ -57,7 +57,7 @@ enum OP_CODES
     lde
 };
 
-void loadIntoMemory(word_t program[], word_t proglen, word_t origin)
+void loadIntoMemory(word_t program[], int proglen, word_t origin)
 {
     MEMORY[0] = pop;
     if (origin > 0)

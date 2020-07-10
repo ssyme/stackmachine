@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
     FILE* fp = fopen(argv[1], "r");
     
     loadFromFile(fp);
-    loadIntoMemory(CODE, 100, 0);
+    loadIntoMemory(CODE, MEMORY_SIZE, 0);
     
     do {
 	switch (CINSTR)
@@ -92,6 +92,21 @@ int main(int argc, char* argv[])
 	case urt:
 	    POP_CST;
 	    break;
+
+	case wrt:
+	    if (DATATOP > (word_t) MEMORY_SIZE)
+		MEMORY[DATATOP] = DATABEL;
+	    else
+		printf("Caught attempted memory write out of bounds %d\n", DATATOP);
+	    POP_DATA; POP_DATA;
+	    break;
+
+	case lde:
+	{
+	    word_t cell = POP_DATA;
+	    PSH_DATA(MEMORY[cell]);
+	    break;
+	}
 	
 	default:
 	    puts("Encountered an invalid opcode during runtime.");
